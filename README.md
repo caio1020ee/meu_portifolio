@@ -1,9 +1,4 @@
 <h1 align="center">Portifólio - Caio Amorim 💻</h1>
-
-![Imagem do projeto finalizado](assets/images/projects/portifolio.png)
-
-<h4 align="center"><a href="https://lucyanovidio.vercel.app">Confira o projeto aqui</a></h4>
-
 ---
 
 ## 💻 Sobre
@@ -43,7 +38,7 @@ Neste projeto apliquei os seguintes pontos:
 <table>
   <tr>
     <td>
-      Feito por <a href="https://github.com/lucyanovidio">Caio Amorim.</a> 🙋🏿‍♂️
+      Feito por <a href="https://github.com/caio1020ee">Caio Amorim.</a> 🙋🏿‍♂️
     </td>
   </tr>
 </table>
