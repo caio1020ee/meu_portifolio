@@ -613,7 +613,7 @@ body.light-mode #home img#notebook-2-white {
 
 /*===== PROJECTS ===============================================*/
 
-#projects {
+/*#projects {
   background-color: var(--secundary-color);
 }
 
@@ -769,7 +769,7 @@ body.light-mode #home img#notebook-2-white {
   margin: 6rem auto 0;
 }
 
-/*===== KNOWLEDGE ===============================================*/
+===== KNOWLEDGE ===============================================*/
 
 #knowledge header h2 {
   margin-bottom: 6rem;
