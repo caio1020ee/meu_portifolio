@@ -112,7 +112,7 @@ section header h2 {
 }
 
 section h3 {
-  color: var(--headline);
+  color: white;
 }
 
 section p,
@@ -121,7 +121,7 @@ section span {
   font-size: 1.7rem;
   line-height: 130%;
 
-  color: var(--paragraph);
+  color: white;
 }
 
 .button {
@@ -133,7 +133,7 @@ section span {
 
   width: fit-content;
 
-  color: var(--primary-color);
+  color: white;
   font-size: 1.4rem;
   font-weight: 700;
   text-transform: uppercase;
