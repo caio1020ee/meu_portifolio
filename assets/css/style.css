@@ -112,7 +112,7 @@ section header h2 {
 }
 
 section h3 {
-  color: white;
+  color: var(--headline);
 }
 
 section p,
@@ -121,7 +121,7 @@ section span {
   font-size: 1.7rem;
   line-height: 130%;
 
-  color: white;
+  color: var(--paragraph);
 }
 
 .button {
@@ -133,7 +133,7 @@ section span {
 
   width: fit-content;
 
-  color: white;
+  color: var(--primary-color);
   font-size: 1.4rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -219,7 +219,7 @@ body.light-mode
 
 body .social-links li:nth-child(3) svg:hover path:nth-child(2),
 body nav#navigation .social-links li:nth-child(3) svg:hover path:nth-child(2) {
-  fill: #096aca;
+  fill: #0a66c2;
 }
 
 body .social-links li:nth-child(4) svg:hover path:nth-child(2),
@@ -513,8 +513,8 @@ body.menu-expanded button path {
 }
 
 #home img {
-  width: 40rem;
-  min-width: 40.5rem;
+  width: 30rem;
+  min-width: 14.5rem;
   display: block;
   margin-inline: auto;
   filter: contrast(1.2);
@@ -526,7 +526,6 @@ body.light-mode #home img#notebook-2 {
   visibility: hidden;
   opacity: 0;
   animation: none;
-  
 }
 
 #home img#notebook-1 {
@@ -544,7 +543,7 @@ body.light-mode #home img#notebook-2-white {
 }
 
 #home img#notebook-2 {
-  position:static;
+  position: absolute;
   z-index: 90;
   animation: appear 1s 2s backwards;
 }
