@@ -16,45 +16,19 @@ const projects = document.querySelector("#projects");
 const knowledge = document.querySelector("#knowledge");
 const contact = document.querySelector("#contact");
 
-window.addEventListener("load", function begin() {
-  if (projectsSection) {
-    projetos(projectsSection);
-  }
-  const desafioBtn = document.querySelector("#desafio");
-  if (desafioBtn) {
-    desafioBtn.addEventListener("click", () => {
-      if (projectsSection) {
-        desafios(projectsSection);
-      }
-      document
-        .querySelector("#backToProjectsBtn")
-        ?.addEventListener("click", begin);
-    });
-  }
-
-  setTimeout(() => {
-    if (notebook_1) notebook_1.style.opacity = 0;
-    if (notebook_1) notebook_1.style.animation = "none";
-    if (notebook_2) notebook_2.style.animation = "none";
-    if (notebook_2_white) notebook_2_white.style.animation = "none";
-    if (vidro) vidro.style.animation = "none";
-  }, 4000);
-});
-
-window.addEventListener("scroll", onScroll);
-onScroll();
-
 function onScroll() {
   showNavOnScroll();
   showBackToTopButtonOnScroll();
 
-  if (about) activateMenuAtCurrentSection(about);
-  if (projects) activateMenuAtCurrentSection(projects);
-  if (knowledge) activateMenuAtCurrentSection(knowledge);
-  if (contact) activateMenuAtCurrentSection(contact);
+  activateMenuAtCurrentSection(about);
+  activateMenuAtCurrentSection(projects);
+  activateMenuAtCurrentSection(knowledge);
+  activateMenuAtCurrentSection(contact);
 }
 
 function activateMenuAtCurrentSection(section) {
+  if (!section) return;
+
   const targetLine = scrollY + innerHeight / 2;
   const sectionTop = section.offsetTop;
   const sectionHeight = section.offsetHeight;
@@ -78,38 +52,61 @@ function activateMenuAtCurrentSection(section) {
 }
 
 function showNavOnScroll() {
-  if (scrollY > 0) {
-    navigation?.classList.add("scroll");
-  } else {
-    navigation?.classList.remove("scroll");
-  }
+  navigation.classList.toggle("scroll", scrollY > 0);
 }
 
 function showBackToTopButtonOnScroll() {
-  if (scrollY > 550) {
-    backToTopButton?.classList.add("show");
-  } else {
-    backToTopButton?.classList.remove("show");
-  }
+  backToTopButton.classList.toggle("show", scrollY > 550);
 }
 
 function openMenu() {
-  const openBtns = document.querySelectorAll(".open");
-  openBtns.forEach((e) => {
-    e.addEventListener("click", () => {
+  document.querySelectorAll(".open").forEach((btn) => {
+    btn.addEventListener("click", () => {
       document.body.classList.add("menu-expanded");
     });
   });
 }
 
 function closeMenu() {
-  const closeBtns = document.querySelectorAll(".close");
-  closeBtns.forEach((e) => {
-    e.addEventListener("click", () => {
+  document.querySelectorAll(".close").forEach((btn) => {
+    btn.addEventListener("click", () => {
       document.body.classList.remove("menu-expanded");
     });
   });
 }
+
+function handleDesafioBtn() {
+  const desafioBtn = document.querySelector("#desafio");
+  if (!desafioBtn) return;
+
+  desafioBtn.addEventListener("click", () => {
+    desafios(projectsSection);
+    setTimeout(() => {
+      const backBtn = document.querySelector("#backToProjectsBtn");
+      if (backBtn) {
+        backBtn.addEventListener("click", () => {
+          projetos(projectsSection);
+          handleDesafioBtn();
+        });
+      }
+    }, 100);
+  });
+}
+
+window.addEventListener("load", () => {
+  projetos(projectsSection);
+  handleDesafioBtn();
+});
+
+window.addEventListener("scroll", onScroll);
+
+setTimeout(() => {
+  if (notebook_1) notebook_1.style.opacity = 0;
+
+  [notebook_1, notebook_2, notebook_2_white, vidro].forEach((el) => {
+    if (el) el.style.animation = "none";
+  });
+}, 4000);
 
 openMenu();
 closeMenu();
@@ -135,6 +132,6 @@ ScrollReveal({
   #contact header`
 );
 
-toggle?.addEventListener("change", () => {
+toggle.addEventListener("change", () => {
   document.body.classList.toggle("light-mode");
 });
