@@ -11,38 +11,47 @@ const notebook_2 = document.querySelector("#notebook-2");
 const notebook_2_white = document.querySelector("#notebook-2-white");
 const vidro = document.querySelector("#vidro");
 
-window.addEventListener("load", function begin() {
-  projetos(projectsSection);
-  const desafioBtn = document.querySelector("#desafio");
+const about = document.querySelector("#about");
+const projects = document.querySelector("#projects");
+const knowledge = document.querySelector("#knowledge");
+const contact = document.querySelector("#contact");
 
-  desafioBtn.addEventListener("click", () => {
-    desafios(projectsSection);
-    document
-      .querySelector("#backToProjectsBtn")
-      .addEventListener("click", begin);
-  });
+window.addEventListener("load", function begin() {
+  if (projectsSection) {
+    projetos(projectsSection);
+  }
+  const desafioBtn = document.querySelector("#desafio");
+  if (desafioBtn) {
+    desafioBtn.addEventListener("click", () => {
+      if (projectsSection) {
+        desafios(projectsSection);
+      }
+      document
+        .querySelector("#backToProjectsBtn")
+        ?.addEventListener("click", begin);
+    });
+  }
+
+  setTimeout(() => {
+    if (notebook_1) notebook_1.style.opacity = 0;
+    if (notebook_1) notebook_1.style.animation = "none";
+    if (notebook_2) notebook_2.style.animation = "none";
+    if (notebook_2_white) notebook_2_white.style.animation = "none";
+    if (vidro) vidro.style.animation = "none";
+  }, 4000);
 });
 
 window.addEventListener("scroll", onScroll);
 onScroll();
 
-window.onload = setTimeout(() => {
-  notebook_1.style.opacity = 0;
-
-  notebook_1.style.animation = "none";
-  notebook_2.style.animation = "none";
-  notebook_2_white.style.animation = "none";
-  vidro.style.animation = "none";
-}, 4000);
-
 function onScroll() {
   showNavOnScroll();
   showBackToTopButtonOnScroll();
 
-  activateMenuAtCurrentSection(about);
-  activateMenuAtCurrentSection(projects);
-  activateMenuAtCurrentSection(knowledge);
-  activateMenuAtCurrentSection(contact);
+  if (about) activateMenuAtCurrentSection(about);
+  if (projects) activateMenuAtCurrentSection(projects);
+  if (knowledge) activateMenuAtCurrentSection(knowledge);
+  if (contact) activateMenuAtCurrentSection(contact);
 }
 
 function activateMenuAtCurrentSection(section) {
@@ -60,30 +69,30 @@ function activateMenuAtCurrentSection(section) {
   const sectionId = section.getAttribute("id");
   const menuElement = document.querySelector(`.menu a[href*=${sectionId}]`);
 
-  menuElement.classList.remove("active");
-
-  if (sectionBoundaries) {
-    menuElement.classList.add("active");
+  if (menuElement) {
+    menuElement.classList.remove("active");
+    if (sectionBoundaries) {
+      menuElement.classList.add("active");
+    }
   }
 }
 
 function showNavOnScroll() {
   if (scrollY > 0) {
-    navigation.classList.add("scroll");
+    navigation?.classList.add("scroll");
   } else {
-    navigation.classList.remove("scroll");
+    navigation?.classList.remove("scroll");
   }
 }
 
 function showBackToTopButtonOnScroll() {
   if (scrollY > 550) {
-    backToTopButton.classList.add("show");
+    backToTopButton?.classList.add("show");
   } else {
-    backToTopButton.classList.remove("show");
+    backToTopButton?.classList.remove("show");
   }
 }
 
-openMenu();
 function openMenu() {
   const openBtns = document.querySelectorAll(".open");
   openBtns.forEach((e) => {
@@ -93,7 +102,6 @@ function openMenu() {
   });
 }
 
-closeMenu();
 function closeMenu() {
   const closeBtns = document.querySelectorAll(".close");
   closeBtns.forEach((e) => {
@@ -102,6 +110,9 @@ function closeMenu() {
     });
   });
 }
+
+openMenu();
+closeMenu();
 
 ScrollReveal({
   origin: "bottom",
@@ -118,12 +129,12 @@ ScrollReveal({
   #projects header,
   #projects .card,
   #knowledge,
-  #knowledg header,
-  #knowledg .card,
+  #knowledge header,
+  #knowledge .card,
   #contact,
   #contact header`
 );
 
-toggle.addEventListener("change", () => {
+toggle?.addEventListener("change", () => {
   document.body.classList.toggle("light-mode");
 });
