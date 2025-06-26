@@ -4,31 +4,47 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Caio Amorim - Portfólio</title>
+
     <link rel="stylesheet" href="./assets/css/style.css" />
     <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon" />
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+
     <script type="module" src="./assets/scripts/main.js" defer></script>
   </head>
   <body>
+    <!-- Navegação -->
     <nav>
-      <ul>
-        <li><a href="#" id="link-sobre">Sobre</a></li>
-        <li><a href="#" id="link-projetos">Projetos</a></li>
-        <li><a href="#" id="link-desafios">Desafios</a></li>
-      </ul>
+      <div class="wrapper menu">
+        <span class="logo">Caio Amorim</span>
+        <ul>
+          <li><a href="#" id="link-projetos">Projetos</a></li>
+          <li><a href="#" id="link-desafios">Desafios</a></li>
+        </ul>
+      </div>
     </nav>
 
+    <!-- Hero Section -->
+    <section id="home" class="wrapper">
+      <div>
+        <h1>Olá, eu sou o Caio Amorim</h1>
+        <p>Estudante de Ciência da Computação apaixonado por tecnologia e cibersegurança.</p>
+        <a href="#projetos" class="button">Ver Projetos</a>
+      </div>
+      <img src="./assets/images/caio.jpeg" alt="Foto de Caio Amorim" />
+    </section>
+
+    <!-- Seção Dinâmica -->
     <main>
-      <section id="conteudo">
-        <!-- Conteúdo dinâmico é injetado aqui via JS -->
+      <section id="conteudo" class="wrapper">
+        <!-- Conteúdo injetado dinamicamente via JS -->
       </section>
     </main>
 
+    <!-- Rodapé -->
     <footer>
       <p>&copy; 2025 Caio Amorim. Todos os direitos reservados.</p>
     </footer>
