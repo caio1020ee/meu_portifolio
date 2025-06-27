@@ -1,7 +1,7 @@
 import { desafios } from "./desafios.js";
 import { projetos } from "./projetos.js";
 
-// Elementos
+// Elementos principais
 const projectsWrapper = document.querySelector("#conteudo");
 const toggle = document.querySelector("#sw-checkbox");
 const navigation = document.querySelector("#navigation");
@@ -39,7 +39,7 @@ function onScroll() {
   sections.forEach(activateMenuAtCurrentSection);
 }
 
-// Menu
+// Menu mobile
 function setupMenuToggle() {
   document.querySelectorAll(".open").forEach((btn) =>
     btn.addEventListener("click", () =>
@@ -54,51 +54,55 @@ function setupMenuToggle() {
   );
 }
 
-// Trocar entre projetos e desafios
-function setupDesafioBtn() {
-  const btn = document.querySelector("#desafio");
-  if (!btn) return;
-
-  btn.addEventListener("click", () => {
-    desafios(projectsWrapper);
-    setTimeout(() => {
-      document
-        .querySelector("#backToProjectsBtn")
-        ?.addEventListener("click", () => {
-          projetos(projectsWrapper);
-          setupDesafioBtn();
-        });
-    }, 100);
+// Navegação
+function setupNavigation() {
+  // Sobre
+  document.querySelector("#link-sobre")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    document.querySelector("#home").scrollIntoView({ behavior: "smooth" });
   });
-}
 
-// Menu navegação dinâmica
-function setupNavLinks() {
+  // Projetos
   document.querySelector("#link-projetos")?.addEventListener("click", (e) => {
     e.preventDefault();
     projetos(projectsWrapper);
-    setupDesafioBtn();
+    setupDesafioBtn(); // Garante que o botão "Desafio" funcione
   });
 
-  document.querySelector("#link-desafios")?.addEventListener("click", (e) => {
+  // Desafios
+  setupDesafioBtn();
+}
+
+// Botão de desafio
+function setupDesafioBtn() {
+  const btn = document.querySelector("#link-desafios");
+  if (!btn) return;
+
+  btn.addEventListener("click", (e) => {
     e.preventDefault();
     desafios(projectsWrapper);
+    setupBackToProjectsBtn();
   });
+}
 
-  document.querySelector("#link-sobre")?.addEventListener("click", (e) => {
-    e.preventDefault();
-    document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" });
-  });
+// Botão "Voltar aos Projetos"
+function setupBackToProjectsBtn() {
+  setTimeout(() => {
+    const backBtn = document.querySelector("#backToProjectsBtn");
+    if (backBtn) {
+      backBtn.addEventListener("click", () => {
+        projetos(projectsWrapper);
+        setupDesafioBtn(); // reatribui evento ao botão de desafio
+      });
+    }
+  }, 100);
 }
 
 // Inicialização
 window.addEventListener("load", () => {
-  projetos(projectsWrapper);
-  setupDesafioBtn();
-  setupNavLinks();
-  setupMenuToggle();
-
-  // Animações iniciais
+  projetos(projectsWrapper);      // Carrega projetos como padrão
+  setupNavigation();              // Define os botões
+  setupMenuToggle();             // Habilita menu
   setTimeout(() => {
     notebooks.forEach((el) => {
       if (el) {
@@ -116,7 +120,7 @@ toggle?.addEventListener("change", () =>
   document.body.classList.toggle("light-mode")
 );
 
-// Scroll reveal
+// ScrollReveal
 ScrollReveal({
   origin: "bottom",
   distance: "50px",
