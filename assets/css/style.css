@@ -1,24 +1,18 @@
-/* ===== RESET ===== */
+/* Reset básico */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
   background-color: #0f0f0f;
   color: #f8f8f2;
   line-height: 1.6;
-  scroll-behavior: smooth;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* ===== WRAPPER ===== */
 .wrapper {
   width: 90%;
   max-width: 1100px;
@@ -26,14 +20,12 @@ a {
   padding: 60px 0;
 }
 
-/* ===== NAVBAR ===== */
+/* Navegação */
 nav {
   background-color: #121212;
   padding: 20px 0;
-  position: fixed;
-  top: 0;
+  position: relative;
   width: 100%;
-  z-index: 1000;
   border-bottom: 1px solid #333;
 }
 
@@ -44,108 +36,177 @@ nav .menu {
 }
 
 nav .logo {
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 24px;
+  font-weight: bold;
   color: #00ff9c;
   text-transform: uppercase;
 }
 
-nav ul {
+nav .menu ul {
   display: flex;
-  gap: 20px;
   list-style: none;
+  gap: 20px;
 }
 
-nav a {
+nav .menu a {
   color: #f8f8f2;
-  font-weight: 500;
-  transition: 0.3s;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
 }
 
-nav a:hover,
-nav a.active {
+nav .menu a:hover,
+nav .menu a.active {
   color: #00ff9c;
 }
 
-/* ===== HERO ===== */
+/* Toggle modo claro/escuro */
+.toggle-theme {
+  margin-left: 20px;
+  cursor: pointer;
+  background: none;
+  border: 2px solid #00ff9c;
+  border-radius: 5px;
+  color: #00ff9c;
+  padding: 5px 10px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.toggle-theme:hover {
+  background-color: #00ff9c;
+  color: #000;
+}
+
+/* Hero Section */
 #home {
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  min-height: 100vh;
   padding-top: 120px;
-  flex-wrap: wrap;
-  gap: 40px;
+  min-height: 100vh;
+  background: radial-gradient(circle at center, #0f0f0f, #0a0a0a);
+  position: relative;
+  overflow: hidden;
 }
 
-#home h1 {
-  font-size: 42px;
+.hero-center {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.hero-center h1 {
+  font-size: 3rem;
   color: #00ff9c;
+  margin-bottom: 20px;
 }
 
-#home p {
-  font-size: 18px;
+.hero-center p {
+  font-size: 1.2rem;
   color: #ccc;
-  max-width: 500px;
-  margin-top: 12px;
+  margin-bottom: 30px;
 }
 
-#home img {
-  width: 300px;
-  border-radius: 10px;
-  box-shadow: 0 0 20px #00ff9c55;
+.icon-terminal {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  animation: pulse 1.5s infinite ease-in-out;
 }
 
-/* ===== BUTTON ===== */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+}
+
+/* Background efeito hacker */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(0, 255, 156, 0.05) 0px,
+    rgba(0, 255, 156, 0.05) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  z-index: -1;
+  pointer-events: none;
+  animation: backgroundMove 20s linear infinite;
+}
+
+@keyframes backgroundMove {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100px);
+  }
+}
+
+/* Botão padrão */
 .button {
-  display: inline-block;
   background-color: #00ff9c;
   color: #000;
   padding: 12px 30px;
+  border: none;
   border-radius: 6px;
+  text-decoration: none;
   font-weight: bold;
-  margin-top: 20px;
   transition: background 0.3s;
+  cursor: pointer;
 }
 
 .button:hover {
   background-color: #00d68f;
 }
 
-/* ===== SECTIONS ===== */
+/* Seções */
 section {
-  padding: 100px 0;
+  padding: 80px 0;
   border-bottom: 1px solid #333;
 }
 
 section h2 {
   font-size: 32px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   color: #00ff9c;
 }
 
 section .content p {
+  max-width: 700px;
   font-size: 16px;
   color: #ccc;
-  max-width: 700px;
 }
 
-/* ===== CARDS ===== */
+/* Cards */
 .cards {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
-  margin-top: 30px;
+  justify-content: center;
 }
 
 .card {
   background-color: #1e1e1e;
   padding: 20px;
   border-radius: 10px;
-  width: 100%;
-  max-width: 300px;
+  width: 260px;
   box-shadow: 0 0 10px #00ff9c33;
   transition: 0.3s;
+  text-align: center;
 }
 
 .card:hover {
@@ -154,15 +215,15 @@ section .content p {
 }
 
 .card img {
-  width: 100%;
-  border-radius: 6px;
+  max-width: 100%;
+  height: auto;
   margin-bottom: 10px;
+  border-radius: 6px;
 }
 
 .card h3 {
   color: #00ff9c;
-  font-size: 20px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .card p {
@@ -170,7 +231,7 @@ section .content p {
   color: #ccc;
 }
 
-/* ===== FOOTER ===== */
+/* Footer */
 footer {
   background-color: #121212;
   padding: 40px 0;
@@ -179,72 +240,57 @@ footer {
   font-size: 14px;
 }
 
-/* ===== LIGHT MODE ===== */
+/* Botão Voltar */
+#backToProjectsBtn {
+  margin-top: 30px;
+}
+
+/* Modo claro */
 body.light-mode {
   background-color: #f8f8f8;
-  color: #111;
+  color: #1e1e1e;
 }
 
 body.light-mode nav {
-  background-color: #fff;
+  background-color: #ffffff;
   border-bottom: 1px solid #ddd;
-}
-
-body.light-mode nav .logo {
-  color: #00b87f;
-}
-
-body.light-mode nav a {
-  color: #333;
-}
-
-body.light-mode nav a:hover,
-body.light-mode nav a.active {
-  color: #00b87f;
 }
 
 body.light-mode .card {
   background-color: #fff;
-  box-shadow: 0 0 10px #ccc;
+  box-shadow: 0 0 10px #00ff9c33;
 }
 
-body.light-mode .card:hover {
-  box-shadow: 0 0 20px #aaa;
+body.light-mode nav .menu a {
+  color: #1e1e1e;
 }
 
-body.light-mode section h2 {
-  color: #00b87f;
-}
-
-body.light-mode #home p,
-body.light-mode section .content p,
-body.light-mode .card p {
-  color: #555;
+body.light-mode nav .menu a:hover,
+body.light-mode nav .menu a.active {
+  color: #00cc80;
 }
 
 body.light-mode footer {
-  background-color: #f0f0f0;
-  color: #777;
+  background-color: #f1f1f1;
+  color: #666;
 }
 
-/* ===== RESPONSIVO ===== */
+/* Responsivo */
 @media (max-width: 768px) {
-  nav ul {
+  nav .menu ul {
     flex-direction: column;
     gap: 10px;
-    margin-top: 10px;
-  }
-
-  #home {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  #home img {
-    margin-top: 20px;
   }
 
   .cards {
     justify-content: center;
+  }
+
+  .hero-center h1 {
+    font-size: 2rem;
+  }
+
+  .hero-center p {
+    font-size: 1rem;
   }
 }
